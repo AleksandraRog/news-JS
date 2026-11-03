@@ -1,8 +1,13 @@
-const path = require('path');
-const { merge } = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const DotenvWebpackPlugin = require('dotenv-webpack');
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path from 'path';
+import { merge } from 'webpack-merge';
+import { fileURLToPath } from 'url';
+import devConfig from './webpack.dev.config.js';
+import prodConfig from './webpack.prod.config.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.ts'),
@@ -21,14 +26,13 @@ const baseConfig = {
         ],
     },
     resolve: {
-        extensions: ['.js', '.ts'],
+        extensions: ['.ts', '.js'],
     },
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
     },
     plugins: [
-        new DotenvWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',
@@ -37,9 +41,9 @@ const baseConfig = {
     ],
 };
 
-module.exports = ({ mode }) => {
+export default (env) => {
+    const mode = env && env.mode ? env.mode : 'dev';
     const isProductionMode = mode === 'prod';
-    const envConfig = isProductionMode ? require('./webpack.prod.config.cjs') : require('./webpack.dev.config.cjs');
-
+    const envConfig = isProductionMode ? prodConfig : devConfig;
     return merge(baseConfig, envConfig);
 };
