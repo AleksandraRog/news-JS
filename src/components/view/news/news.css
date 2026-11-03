@@ -38,6 +38,13 @@
     list-style: none;
 }
 
+.news__item .news__meta-details li {
+    display: block;
+    margin-right: 1.5rem;
+}
+
+
+
 .news__item .news__meta-details {
     position: absolute;
     top: 0;
