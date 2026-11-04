@@ -18,7 +18,7 @@ class Loader {
         this.load<T>('GET', endpoint, callback, options);
     }
 
-    private static errorHandler(res: Response) {
+    private static errorHandler(res: Response): Response {
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);

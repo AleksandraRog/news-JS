@@ -56,7 +56,7 @@ class News {
         document.querySelector<HTMLDivElement>('.news')?.appendChild(fragment);
     }
 
-    private static createTopScroll() {
+    private static createTopScroll(): HTMLDivElement {
         const wrapper = document.createElement('div');
         wrapper.classList.add('scroll-arrow-wrapper');
         const link = document.createElement('a');
