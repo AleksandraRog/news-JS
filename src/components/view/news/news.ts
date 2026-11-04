@@ -1,3 +1,4 @@
+import '../../../assets/img/arrow.svg';
 import './news.css';
 
 import Article from '../../controller/article';
