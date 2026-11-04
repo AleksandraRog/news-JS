@@ -33,3 +33,26 @@
     font-weight: 400;
     white-space: nowrap;
 }
+
+.filter-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin: 0 auto;
+    list-style: none;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    padding: 1rem;
+}
+
+.filter-item.active {
+    color: #70d6ff;
+}
+
+.filter-item:hover,
+.filter-item.filter {
+    color: #69db7e;
+    border-color: #69db7e;
+    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+}
