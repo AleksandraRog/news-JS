@@ -43,7 +43,6 @@ class Sources {
             }
             filterItem.textContent = letter;
             filterItem.addEventListener('click', () => {
-                console.log(letter);
                 filterContainer.querySelector('.filter-item.filter')?.classList.remove('filter');
                 filterItem.classList.add('filter');
                 this.filterByLetter(letter);
@@ -59,7 +58,6 @@ class Sources {
             return;
         }
         const filteredSources = this.sourceList.filter((item: Source) => item.name[0].toUpperCase() === letter);
-        console.log(filteredSources);
         this.renderSources(filteredSources);
     }
 
