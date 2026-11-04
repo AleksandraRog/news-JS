@@ -9,6 +9,10 @@
         sans-serif;
 }
 
+.sources a {
+    display: block;
+}
+
 .source__item {
     background: none;
     border: 2px solid #30c5ff;

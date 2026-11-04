@@ -1,6 +1,7 @@
 import './news.css';
 
 import Article from '../../controller/article';
+import Sources from '../sources/sources';
 
 class News {
     public static draw(data: Article[]) {
@@ -50,7 +51,22 @@ class News {
         });
 
         document.querySelector<HTMLDivElement>('.news')?.replaceChildren();
+        if (data.length > 0) document.querySelector<HTMLDivElement>('.news')?.appendChild(this.createTopScroll());
         document.querySelector<HTMLDivElement>('.news')?.appendChild(fragment);
+    }
+
+    private static createTopScroll() {
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('scroll-arrow-wrapper');
+        const link = document.createElement('a');
+        link.href = '#' + Sources.sourcesId;
+        link.classList.add('scroll-top');
+        const img = document.createElement('img');
+        img.alt = 'scroll top';
+        img.src = 'assets/img/arrow.svg';
+        link.append(img);
+        wrapper.append(link);
+        return wrapper;
     }
 }
 

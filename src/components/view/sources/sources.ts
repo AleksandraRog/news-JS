@@ -4,13 +4,16 @@ import Source from '../../controller/source';
 
 class Sources {
     private static sourceList: Source[] = [];
+    private static newsId: string = 'news';
+    public static sourcesId: string = 'sources';
 
     public static draw(data: Source[]) {
-        const main = document.querySelector<HTMLElement>('main');
         const sources = document.querySelector<HTMLDivElement>('.sources');
-        console.log(main, sources);
+        const news = document.querySelector<HTMLDivElement>('.news');
+        sources?.setAttribute('id', this.sourcesId);
+        news?.setAttribute('id', this.newsId);
         this.sourceList = data;
-        if (main && sources) {
+        if (sources) {
             const filterLayout: HTMLUListElement = this.filterLayout(data);
             sources?.before(filterLayout);
             this.renderSources(data);
@@ -65,13 +68,17 @@ class Sources {
         const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
 
         data.forEach((item) => {
+            const link = document.createElement('a');
+            link.href = '#' + this.newsId;
+
             const sourceClone: DocumentFragment = sourceItemTemp?.content.cloneNode(true) as DocumentFragment;
 
             ((element: HTMLSpanElement | null | undefined) => element && (element.textContent = item.name))(
                 sourceClone?.querySelector<HTMLSpanElement>('.source__item-name')
             );
             sourceClone?.querySelector('.source__item')?.setAttribute('data-source-id', item.id);
-            fragment.append(sourceClone);
+            link.append(sourceClone);
+            fragment.append(link);
         });
 
         document.querySelector('.sources')?.replaceChildren(fragment);
