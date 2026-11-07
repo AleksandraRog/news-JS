@@ -20,7 +20,7 @@ class News {
 
             newsClone
                 .querySelector<HTMLDivElement>('.news__meta-photo')
-                ?.style?.setProperty('backgroundImage', `url(${item.urlToImage || 'img/news_placeholder.jpg'})`);
+                ?.style.setProperty('background-image', `url(${item.urlToImage || 'img/news_placeholder.jpg'})`);
 
             const applyTextContent = (element: HTMLElement | null | undefined, text: string) => {
                 if (element) {
